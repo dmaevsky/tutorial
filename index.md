@@ -7,7 +7,7 @@ You can also pull inspiration from [other users' projects](/explore).
 
 Let's get into it.
 
-## Projects
+### Projects
 
 Ellx project is a collection of files and folders you can see in the project explorer on the left. Click on `(…)` next to an item (or right-click the item) to see a list of avaliable actions. Also <kbd>Ctrl+Shift+P</kbd> opens a *command palette*.
 
@@ -78,92 +78,38 @@ It is also a sort of "back-of-the-napkin" calculation space - a "checkered paper
 Press <kbd>Alt+2</kbd> now and see for yourself.
 
 ### Layouts
+Layouts are the *"skin"* of your application. By convention, each Ellx project must have a `/index.md` file in its root (like this very file for instance).
 
-## Reactivity
-Ellx is a reactive programming environment for building rich interactive documents and applications. It is similar to notebooks like Jupyter and Observable since they all allow for exploratory programming, i.e. executing and visualizing code as you type it. It also provides tabular spreadsheet view which helps to get insight from data, very much like Excel or Google spreadsheets.
+`/index.md` will become the *entry point* of the published static website for your project.
 
+Layouts are just classical markdown files enriched with *interpolations* - Ellx expressions delimited with curly braces, where you can reference any node or exported symbol in the same namespace.
 
-## Variable declaration
+You can even define new nodes by preceding the expression with the node name and an `=` sign.
 
-Ellx applications are reactive calculation graphs, very much like Excel or other spreadsheets, which in turn makes variables _spreasheet nodes._ By convention each node must have a name followed by assignment expression. Hence dogmatic "hello world" program looks like this:
+For instance:
 
-```
-{ name = 'world' }
+My IP address is { fetch('https://ipinfo.io/ip').text() }
 
-Hello { name }!
-```
+Latest space launch is:
+**{launches[launches.length - 1].name}** by
+**{launches[launches.length - 1].lsp.name}** on
+*{launches[launches.length - 1].net}*
 
-> { name = 'world' }
+{ x = slider({ value: 33 }) }
+{ y = slider({ value: 56 }) }
 
-> Hello { name }!
+> x = { x }
 
-You can see the output of the program inside the preview on the right. Curly braces denote Ellx expression, everything else in this file is plain markdown.
-
-
-
-And just like cells Excel which can derive values from other cells and update reactively, Ellx nodes can do the same!
-
-> { uppercaseName = name.toUpperCase() }
-
-```
-{ uppercaseName = name.toUpperCase() }
-```
-
-should render "WORLD" but try changing `name` on line 21 and watch magic happen:
-
-> Hello uppercase { uppercaseName }!
-
-
-
-## Browser runtime environment
-
-Note that `toUpperCase` is a [method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) of JavaScript String type. Ellx nodes are JavaScript expressions executed right inside your browser so you are free to use and combine any browser APIs and see the results in an instant!
-
-Let's fetch our current IP address using browser [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
-
-```
-{ ip = fetch('https://ipinfo.io/ip').text().split('.') }
-```
-
-> $ip=$ { ip = fetch('https://ipinfo.io/ip').text().split('.') }
-
-Let $x$ be the first byte of the address and $y$ the second byte.
-
-> $x=$ { x = ip[0] }
-
-> $y=$ { y = ip[1] }
-
-Then hypotenuse of the triangle with catheti $x$ and $y$ equals
+> y = { y }
 
 > $\sqrt{x^2+y^2}=$ { Math.sqrt(x*x + y*y) }
 
-This example is quite useless although now we have all tools required to fetch and process the space launch API data, not visualize yet. But first, let's take a look at Ellx project structure.
+### Components
+You might have noticed how certain nodes are rendered as plain text while others as graphic components.
 
-## Projects
+Components are a special Ellx nodes that can maintain internal state and provide custom render and clean-up hooks. You can easily wrap any existing React, Svelte, Vue or any other components, using [Ellx component API](https://docs.ellx.app/#component-api).
 
-
- Spreadsheet and JavaScript module files contain application logic and layout contains representation layer.
-
-Anything exported from `index.js` is available in `index.ellx` and `index.js`. Any node declared in `index.ellx` is available in `index.md`. This is all to Ellx declaration precedence.
-
-This variable is declared, but not exported from `index.js` (please export it so that the error goes):
-```
-{ justAVar }
-```
-
-> { justAVar }
-
-
-This node is declared (guess what) in `index.ellx`:
-```
-{ nodeFromIndexDotEllx }
-```
-
-> { nodeFromIndexDotEllx }
-
-Let's take a closer look at each file type.
-
-### Layouts
+You can also embed any HTML markup directly into your layout, for example, styles.
 
 <!-- Styles in MD -->
 <style>
@@ -172,24 +118,9 @@ Let's take a closer look at each file type.
   }
 </style>
 
-> To return launches between August 20th, 2015 and September 20th, 2015:
-> https://launchlibrary.net/1.4/launch/2015-08-20/2015-09-20
+### Thank you
+for your patience!
 
-```
-data = fetch("https://launchlibrary.net/1.4/launch/2015-08-20/2015-09-20").json().launches
-```
+Have fun building awesome things with Ellx!
 
-#### Note on order of precedence
-
-```
- pretty(data)
-```
-{ pretty(data) }
-
-### Sheets
-
-Navigate to sheet
-
-Components intro
-
-
+Please [let us know](mailto:support@ellxoft.com) how it goes.

@@ -9,7 +9,7 @@ nodes:
   dayjs = require('dayjs')
   frame = [dayjs().subtract(1, 'month').format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')]
   launches = fetch('https://launchlibrary.net/1.4/launch/' + frame.join('/')).json().launches
-  runs = (range(1,5) * 500).map(ms => delay(ms, 'I resolve after ' + ms + ' ms'))
+  runs = (range(1,5) * 500).reverse().map(ms => delay(ms, 'I resolve after ' + ms + ' ms'))
   $9 = race(runs)
 layout:
 [
@@ -192,6 +192,11 @@ layout:
     },,,
     {
       "node": "$9"
+    }
+  ],,,,,
+  [,
+    {
+      "value": "Press Alt-3 now to return to /index.md"
     }
   ]
 ]
