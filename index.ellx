@@ -1,0 +1,197 @@
+version: 1.1
+nodes:
+  n = 5
+  gl = gauss_legendre(n, -1, 1)
+  f = gl.x.map(Math.exp)
+  integral = sum(gl.w * f)
+  exact = Math.exp(1)-Math.exp(-1)
+  $1 = integral-exact
+  dayjs = require('dayjs')
+  frame = [dayjs().subtract(1, 'month').format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')]
+  launches = fetch('https://launchlibrary.net/1.4/launch/' + frame.join('/')).json().launches
+  runs = (range(1,5) * 500).map(ms => delay(ms, 'I resolve after ' + ms + ' ms'))
+  $9 = race(runs)
+layout:
+[
+  [,
+    {
+      "value": "Ellx formulas are basically Javascript assignment expressions, where the left-hand side is the calculation node name"
+    }
+  ],
+  [,
+    {
+      "value": "In the right-hand side expression you can reference any other nodes or exported symbols in the same namespace, as well as any JS browser API exposed in the global window object"
+    }
+  ],,
+  [,
+    {
+      "value": "n"
+    },
+    {
+      "node": "n"
+    },
+    {
+      "value": "Press F2 or double-click to see the formula in the cell"
+    }
+  ],,
+  [,,
+    {
+      "node": "gl",
+      "expansion": {
+        "vertical": true,
+        "labelsLeft": true,
+        "height": 2,
+        "width": 1
+      }
+    }
+  ],,,
+  [,
+    {
+      "value": "If the node value is a structure (like gl above), it can be \"expanded\" over several spreadsheet cells using Shift+Alt+Arrows"
+    }
+  ],
+  [,
+    {
+      "value": "Shift+Alt+Z/X shows or hides rows/column labels. Please, refer to the docs or press F1 for more information on keyboard shortcuts."
+    }
+  ],,
+  [,
+    {
+      "value": "Lets calculate integral of exp(x) between -1 and 1 using the Gauss-Legendre quadrature:"
+    }
+  ],,
+  [,
+    {
+      "value": "exp(x)"
+    },
+    {
+      "node": "f"
+    }
+  ],
+  [,
+    {
+      "value": "Integral"
+    },
+    {
+      "node": "integral"
+    },,
+    {
+      "value": "(*)"
+    }
+  ],
+  [,
+    {
+      "value": "Exact value"
+    },
+    {
+      "node": "exact"
+    }
+  ],
+  [,
+    {
+      "value": "Error"
+    },
+    {
+      "node": "$1"
+    }
+  ],,
+  [,
+    {
+      "value": "Take a closer look at the Integral formula (*). You'll notice that f and gl.w are vectors, but we are using a plain multiplication operator to calculate their product element-wise."
+    }
+  ],
+  [,
+    {
+      "value": "This is possible because Ellx enriches JS grammar in formulas with operator overloading support."
+    }
+  ],
+  [,
+    {
+      "value": "Arithmetic and logical operators are applied element-wise, and there is a mechanism to define operator overloads for arbitrary classes"
+    }
+  ],
+  [,
+    {
+      "value": "Check out https://ellx.io/dmaevsky/monte-carlo/index.js for an example."
+    }
+  ],,
+  [,
+    {
+      "value": "However, the most powerful feature of Ellx formulas is the so-called \"automatic async transform\"."
+    }
+  ],,
+  [,
+    {
+      "node": "dayjs"
+    },
+    {
+      "value": "dynamic dependency"
+    },,
+    {
+      "value": "(**)"
+    }
+  ],
+  [,
+    {
+      "node": "frame"
+    },,
+    {
+      "value": "Below we retrieve a list of all space launches in the last month from the awesome https://launchlibrary.net API"
+    }
+  ],,,
+  [,
+    {
+      "node": "launches",
+      "expansion": {
+        "vertical": true,
+        "secondary": true,
+        "labelsTop": true,
+        "height": 8,
+        "width": 28
+      }
+    }
+  ],,,,,,,,,
+  [,
+    {
+      "value": "Note how the formula looks completely synchronous: fetch().json().launches"
+    }
+  ],
+  [,
+    {
+      "value": "You almost never need to worry which parts of your formulas are sync or async."
+    }
+  ],
+  [,
+    {
+      "value": "Ellx will automagically run in parallel what can be run in parallel, and await what needs to be waited for!"
+    }
+  ],
+  [,
+    {
+      "value": "Refer to https://docs.ellx.app for details about how it works"
+    }
+  ],,
+  [,
+    {
+      "value": "Ellx has only 5 built-in functions. You have already met sum in (*), and require in (**) above."
+    }
+  ],
+  [,
+    {
+      "value": "The other 3 are range, race, delay. And here's an example to demonstrate them all and to blow your mind :)"
+    }
+  ],,
+  [,
+    {
+      "node": "runs",
+      "expansion": {
+        "vertical": true,
+        "height": 4,
+        "width": 1
+      }
+    },,,
+    {
+      "node": "$9"
+    }
+  ]
+]
