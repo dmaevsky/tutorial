@@ -112,7 +112,7 @@ layout:
   ],
   [,
     {
-      "value": "Check out https://ellx.io/dmaevsky/monte-carlo/index.js for an example."
+      "value": "Check out [this example](/dmaevsky/monte-carlo/index.js)."
     }
   ],,
   [,
@@ -136,7 +136,7 @@ layout:
       "node": "frame"
     },,
     {
-      "value": "Below we retrieve a list of all space launches in the last month from the awesome https://launchlibrary.net API"
+      "value": "Below we retrieve a list of all space launches in the last month from the awesome [Launch library API](https://launchlibrary.net)"
     }
   ],,,
   [,
@@ -168,7 +168,7 @@ layout:
   ],
   [,
     {
-      "value": "Refer to https://docs.ellx.app for details about how it works"
+      "value": "Refer to the [docs](https://docs.ellx.app) for details about how it works"
     }
   ],,
   [,
