@@ -70,7 +70,7 @@ Ellx spreadsheet is probably the most important part of the project. If the scip
 
 Use them to
 - fetch your data
-- define reactive logic to define the data processing flow
+- implement reactive logic to define, visualize, and debug the data processing flow
 - `require` dynamic dependencies
 
 It is also a sort of "back-of-the-napkin" calculation space - a "checkered paper" sheet where you can explore your data in a convenient tabular form.
