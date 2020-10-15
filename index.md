@@ -84,16 +84,16 @@ Layouts are the *"skin"* of your application. By convention, each Ellx project m
 
 Layouts are just classical markdown files enriched with *interpolations* - Ellx expressions delimited with curly braces, where you can reference any node or exported symbol in the same namespace.
 
-You can even define new nodes by preceding the expression with the node name and an `=` sign.
-
 For instance:
-
-My IP address is { fetch('https://ipinfo.io/ip').text() }
 
 Latest space launch is:
 **{launches[launches.length - 1].name}** by
 **{launches[launches.length - 1].lsp.name}** on
 *{launches[launches.length - 1].net}*
+
+My IP address is { fetch('https://ipinfo.io/ip').text() }
+
+You can even define new nodes by preceding the expression with the node name and an `=` sign.
 
 { x = slider({ value: 33 }) }
 { y = slider({ value: 56 }) }
