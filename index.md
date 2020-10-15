@@ -123,4 +123,6 @@ for your patience!
 
 Have fun building awesome things with Ellx!
 
-Please [let us know](mailto:support@ellxoft.com) how it goes or create a PR for [this tutorial repo](https://github.com/ellx-hub/tutorial).
+Please [let us know](mailto:support@ellxoft.com) how it goes.
+
+If you have a suggestion or find a typo, don't hesitate to submit a PR to [this tutorial repo](https://github.com/ellx-hub/tutorial).
