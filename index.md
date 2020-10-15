@@ -13,9 +13,9 @@ Ellx project is a collection of files and folders you can see in the project exp
 
 Projects can contain files of any type, however the following filename extensions are treated specially:
 
-- `.js :` JavaScript module
-- `.ellx :` spreadsheet
-- `.md :` markdown layout
+- `.js` JavaScript module
+- `.ellx` spreadsheet
+- `.md` markdown layout
 
 To create a folder inside your project terminate a new item's name with a slash (`/`). Alternatively you can directly create a nested file by naming it, for example, `folder/nested.js`
 
@@ -35,13 +35,13 @@ To import a module from anothet project (including another user's project) add a
 import slider from '~ellx-hub/lib/components/Slider';
 import { plot } from '~ellx-hub/plot';
 ```
-Note that, like in NodeJS, Ellx tries to automatically append `.js` and `/index.js` to  resolve imports without extensions.
+Note that, like in Node.js, Ellx tries to automatically append `.js` and `/index.js` to  resolve imports without extensions.
 
 Out of the box you can also import `.svelte` (Svelte components), `.jsx` (React components), `.vue` (Vue components: *coming soon*), `.css`, `.json`, and `.glsl` (WebGL shaders) files, like with most modern web bundlers.
 
 Keep an eye on [~ellx-hub](/ellx-hub) user: it is Ellx official open source collection of components and utilities.
 
-Please, contribute! Open an issue if you find one. Submit a pull request if you have a fix or an improvement!
+Please contribute! Open an issue if you find one. Submit a pull request if you have a fix or an improvement!
 
 ##### NPM modules
 You can directly import any NPM module published in UMD or ESM format, e.g.
@@ -66,7 +66,7 @@ All symbols you export from a `.js` file are (obviously) available to be importe
 **Hint**. You can switch between `js/ellx/md` files in the same namespace using <kbd>Alt+1/2/3</kbd> shortcuts. Also <kbd>Ctrl+P</kbd> lets you switch between recently opened files.
 
 ### Spreadsheets
-Ellx spreadsheet is probably the most important part of the project. If the scipts are *"flesh and bones"* of your application, then the spreadsheets are its *"nervous system"*.
+Ellx spreadsheet is probably the most important part of the project. If the scripts are *"flesh and bones"* of your application, then the spreadsheets are its *"nervous system"*.
 
 Use them to
 - fetch your data
@@ -124,3 +124,5 @@ for your patience!
 Have fun building awesome things with Ellx!
 
 Please [let us know](mailto:support@ellxoft.com) how it goes.
+
+If you have a suggestion or find a typo, don't hesitate to submit a PR to [this tutorial repo](https://github.com/ellx-hub/tutorial).
